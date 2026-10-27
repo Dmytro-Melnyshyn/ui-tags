@@ -50,8 +50,7 @@
           "settings.tags.enabled",
           "mod-settings.entries.collection.get",
           "mod-settings.entries.item.get",
-          "mod-settings.global.read.ui-tags.tags.manage",
-          "configuration.entries.collection.get"
+          "mod-settings.global.read.ui-tags.tags.manage"
         ],
         "visible": true
       },
@@ -62,9 +61,7 @@
           "ui-tags.settings.view",
           "mod-settings.entries.item.post",
           "mod-settings.entries.item.put",
-          "mod-settings.global.write.ui-tags.tags.manage",
-          "configuration.entries.item.put",
-          "configuration.entries.item.post"
+          "mod-settings.global.write.ui-tags.tags.manage"
         ],
         "visible": true
       },
@@ -150,7 +147,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intl": "^7.1.5",
-    "react-query": "^3.39.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.0",

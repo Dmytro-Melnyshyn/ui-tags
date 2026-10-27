@@ -9,6 +9,5 @@
     "permission.create": "Tags: Tags aanmaken",
     "permission.edit": "Tags: Tags bewerken",
     "permission.delete": "Tags: Tags verwijderen",
-    "permission.settings": "Instellingen (tags): Kan tags voor alle apps in- of uitschakelen",
-    "settings.saveError": "Er is een fout opgetreden tijdens het opslaan van de configuratie van de tags."
+    "permission.settings": "Instellingen (tags): Kan tags voor alle apps in- of uitschakelen"
 }

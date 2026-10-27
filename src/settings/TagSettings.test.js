@@ -1,10 +1,5 @@
 import { act } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
-
-import {
-  useOkapiKy,
-  useStripes,
-} from '@folio/stripes/core';
+import { useStripes } from '@folio/stripes/core';
 import { render } from '@folio/jest-config-stripes/testing-library/react';
 import userEvent from '@folio/jest-config-stripes/testing-library/user-event';
 
@@ -23,14 +18,8 @@ import buildStripes from '../../test/jest/__mock__/stripesCore.mock';
 const store = createStore(combineReducers({ form: formReducer }));
 const history = createMemoryHistory();
 
-const mockKy = {
-  post: jest.fn().mockReturnValue({
-    json: jest.fn().mockResolvedValue({}),
-  }),
-  put: jest.fn().mockReturnValue({
-    json: jest.fn().mockResolvedValue({}),
-  }),
-};
+const mockSettingsPost = jest.fn().mockResolvedValue({});
+const mockSettingsPut = jest.fn().mockResolvedValue({});
 
 const mockStripes = buildStripes({
   connect: (Component) => (props) => {
@@ -43,8 +32,8 @@ const mockStripes = buildStripes({
 
     const mockMutator = {
       settings: {
-        POST: jest.fn().mockResolvedValue({}),
-        PUT: jest.fn().mockResolvedValue({}),
+        POST: mockSettingsPost,
+        PUT: mockSettingsPut,
       },
     };
 
@@ -57,17 +46,13 @@ const mockStripes = buildStripes({
   },
 });
 
-const queryClient = new QueryClient();
-
 const renderTagSettings = (props = {}) => render(
   <Provider store={store}>
     <Router history={history}>
-      <QueryClientProvider client={queryClient}>
-        <TagSettings
-          label="Tags label"
-          {...props}
-        />
-      </QueryClientProvider>
+      <TagSettings
+        label="Tags label"
+        {...props}
+      />
     </Router>
   </Provider>
 );
@@ -75,7 +60,6 @@ const renderTagSettings = (props = {}) => render(
 describe('Tag Settings', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    useOkapiKy.mockReturnValue(mockKy);
     useStripes.mockReturnValue(mockStripes);
   });
 
@@ -86,7 +70,7 @@ describe('Tag Settings', () => {
   });
 
   describe('when changing the flag and saving', () => {
-    it('should save to both the configurations API and settings API', async () => {
+    it('should save to the settings API', async () => {
       const { getByText, getByRole } = renderTagSettings();
 
       expect(getByRole('checkbox', { name: 'ui-tags.settings.enableTags' })).toBeChecked();
@@ -97,14 +81,11 @@ describe('Tag Settings', () => {
       expect(getByText('stripes-core.button.save')).toBeEnabled();
       await act(async () => userEvent.click(getByText('stripes-core.button.save')));
 
-      expect(mockKy.post).toHaveBeenCalledWith('configurations/entries', {
-        json: {
-          configName: 'tags_enabled',
-          enabled: true,
-          id: expect.any(String),
-          module: 'TAGS',
-          value: false,
-        },
+      expect(mockSettingsPost).toHaveBeenCalledWith({
+        id: expect.any(String),
+        key: 'tags_enabled',
+        scope: 'ui-tags.tags.manage',
+        value: false,
       });
     });
 
@@ -129,8 +110,8 @@ describe('Tag Settings', () => {
 
           const mockMutator = {
             settings: {
-              POST: jest.fn().mockResolvedValue({}),
-              PUT: jest.fn().mockResolvedValue({}),
+              POST: mockSettingsPost,
+              PUT: mockSettingsPut,
             },
           };
 
@@ -155,14 +136,11 @@ describe('Tag Settings', () => {
       expect(getByText('stripes-core.button.save')).toBeEnabled();
       await act(async () => userEvent.click(getByText('stripes-core.button.save')));
 
-      expect(mockKy.put).toHaveBeenCalledWith(`configurations/entries/${existingSettingId}`, {
-        json: {
-          configName: 'tags_enabled',
-          enabled: true,
-          id: expect.any(String),
-          module: 'TAGS',
-          value: false,
-        },
+      expect(mockSettingsPut).toHaveBeenCalledWith({
+        id: existingSettingId,
+        key: 'tags_enabled',
+        scope: 'ui-tags.tags.manage',
+        value: false,
       });
     });
   });

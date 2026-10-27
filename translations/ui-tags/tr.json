@@ -9,6 +9,5 @@
     "permission.create": "Etiketler: Oluştur Etiketler",
     "permission.edit": "Etiketler: Etiketleri düzenle",
     "permission.delete": "Etiketler: Etiketleri sil",
-    "permission.settings": "Ayarlar (Etiketler): Tüm uygulamalar için etiketleri etkinleştirebilir veya devre dışı bırakabilir",
-    "settings.saveError": "Etiket yapılandırmasını kaydetmeye çalışırken bir hata oluştu."
+    "permission.settings": "Ayarlar (Etiketler): Tüm uygulamalar için etiketleri etkinleştirebilir veya devre dışı bırakabilir"
 }
