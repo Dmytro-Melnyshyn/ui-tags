@@ -8,6 +8,5 @@
     "permission.view": "Mots-clés sur notices : Afficher uniquement",
     "permission.create": "Mots-clés : créer des mots-clés",
     "permission.edit": "Mots-clés : modifier des mots-clés",
-    "permission.delete": "Mots-clés : supprimer des mots-clés",
-    "permission.settings": "Paramètres (mots-clés): peut activer ou désactiver les mots-clés pour toutes les applications"
+    "permission.delete": "Mots-clés : supprimer des mots-clés"
 }

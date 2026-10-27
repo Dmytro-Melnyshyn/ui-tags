@@ -8,6 +8,5 @@
     "permission.view": "Tags nos registros: somente visualização",
     "permission.create": "Tags: Criar tags",
     "permission.edit": "Tags: Editar tags",
-    "permission.delete": "Etiquetas: Eliminar etiquetas",
-    "permission.settings": "Configurações (Tags): Pode ativar ou desativar tags para todos os aplicativos"
+    "permission.delete": "Etiquetas: Eliminar etiquetas"
 }
